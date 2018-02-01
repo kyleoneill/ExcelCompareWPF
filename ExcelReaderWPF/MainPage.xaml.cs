@@ -93,18 +93,8 @@ namespace ExcelReaderWPF
         {
             if (File1Box.Text != "" && File2Box.Text != "" && FileOutBox.Text != "" && FileIndexBox.Text != "")
             {
-                this.NavigationService.Navigate(new Uri("ProgressBar.xaml", UriKind.Relative));
-            }
-        }
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            ProgressBar destinationPage = e.Content as ProgressBar;
-            if(destinationPage != null)
-            {
-                destinationPage.file1Path = File1Box.Text;
-                destinationPage.file2Path = File2Box.Text;
-                destinationPage.fileOutPath = FileOutBox.Text;
-                destinationPage.fileOutIndex = Convert.ToInt32(FileIndexBox.Text);
+                ProgressBar p = new ProgressBar(File1Box.Text, File2Box.Text, FileOutBox.Text, FileIndexBox.Text);
+                this.NavigationService.Navigate(p);
             }
         }
     }

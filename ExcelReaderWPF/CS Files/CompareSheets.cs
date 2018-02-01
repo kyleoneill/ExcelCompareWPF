@@ -7,9 +7,9 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ExcelReaderWPF.CS_Files
 {
-    class CompareSheets
+    static class CompareSheets
     {
-        public static int Compare(Excel.Worksheet sheet, Excel.Workbook workbook2, Excel.Range writeRange, int writebookRow)
+        public static int Compare(Excel.Worksheet sheet, Excel.Range compareRange, Excel.Range writeRange, int writebookRow, ProgressBar progressBar)
         {
             List<String> dictionary = new List<string>()
             {
@@ -24,8 +24,6 @@ namespace ExcelReaderWPF.CS_Files
             };
             int writebookColumns = 1;
             bool written;
-            Excel.Worksheet compareSheet = workbook2.Sheets[sheet.Index];
-            Excel.Range compareRange = compareSheet.UsedRange;
             Excel.Range range = sheet.UsedRange;
             int rows = range.Rows.Count;
             int columns = range.Columns.Count;
@@ -34,6 +32,7 @@ namespace ExcelReaderWPF.CS_Files
                 written = false;
                 float percentage = ((float)i / rows) * 100;
                 //Console.Write(sheet.Name + ": " + percentage.ToString("0.0") + "%");
+                
                 if (range.Cells[i, 4].Value == compareRange.Cells[i, 4].Value && range.Cells[i, 4].Value != null)
                 {
                     for (int j = 5; j <= 11; j++)

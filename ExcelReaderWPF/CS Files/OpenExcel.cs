@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ExcelReaderWPF.CS_Files
 {
-    class Program
+    class OpenExcel
     {
     }
 }
