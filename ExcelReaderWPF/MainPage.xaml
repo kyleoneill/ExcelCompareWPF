@@ -1,0 +1,25 @@
+﻿<Page x:Class="ExcelReaderWPF.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ExcelReaderWPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="350" d:DesignWidth="525"
+      Title="MainPage">
+
+    <Grid>
+        <TextBox x:Name="File1Box" HorizontalAlignment="Left" Height="20" Margin="282,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" IsReadOnly="True"/>
+        <Button x:Name="File1Select" Content="Browse" HorizontalAlignment="Left" Margin="181,100,0,0" VerticalAlignment="Top" Width="75" Click="File1Select_Click"/>
+        <Label Content="Excel File 1" HorizontalAlignment="Left" Margin="64,97,0,0" VerticalAlignment="Top" Height="28" Width="76"/>
+        <TextBox x:Name="File2Box" HorizontalAlignment="Left" Height="20" Margin="282,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" IsReadOnly="True"/>
+        <Button x:Name="File2Select" Content="Browse" HorizontalAlignment="Left" Margin="181,142,0,0" VerticalAlignment="Top" Width="75" Click="File2Select_Click"/>
+        <Label Content="Excel File 2" HorizontalAlignment="Left" Margin="64,139,0,0" VerticalAlignment="Top" Height="28" Width="76"/>
+        <TextBox x:Name="FileOutBox" HorizontalAlignment="Left" Height="20" Margin="282,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" IsReadOnly="True"/>
+        <Button x:Name="FileOutSelect" Content="Browse" HorizontalAlignment="Left" Margin="181,184,0,0" VerticalAlignment="Top" Width="75" Click="File3Select_Click"/>
+        <Label Content="Output File" HorizontalAlignment="Left" Margin="64,181,0,0" VerticalAlignment="Top" Height="28" Width="76"/>
+        <Label Content="Output File&#xD;&#xA;Sheet Index" HorizontalAlignment="Left" Margin="64,228,0,0" VerticalAlignment="Top" Height="43" Width="76"/>
+        <TextBox x:Name="FileIndexBox" HorizontalAlignment="Left" Height="20" Margin="158,241,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" PreviewTextInput="FileIndexBox_PreviewTextInput"/>
+        <Button x:Name="SubmitDataButton" Content="Enter Data" HorizontalAlignment="Left" Margin="395,251,0,0" VerticalAlignment="Top" Width="75" Click="SubmitDataButton_Click"/>
+    </Grid>
+</Page>
