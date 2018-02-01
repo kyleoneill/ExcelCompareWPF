@@ -46,9 +46,15 @@ namespace ExcelReaderWPF
             File2Path = fp2;
             FileOutPath = fpo;
             FileOutIndex = Convert.ToInt32(foi);
-            this.Loaded += new RoutedEventHandler(OnLoad);
+            //this.Loaded += new RoutedEventHandler(OnLoad);
         }
-        public void OnLoad(Object sender, RoutedEventArgs e)
+        /*public void OnLoad(Object sender, RoutedEventArgs e)
+        {
+
+        }*/
+        
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             int writebookRow = 2;
 
@@ -65,11 +71,13 @@ namespace ExcelReaderWPF
             writeRange.Cells[1, 2].Value = "Jack Type";
             writeRange.Cells[1, 3].Value = "Jack";
 
-            foreach(Excel.Worksheet sheet in book1.Worksheets)
+            foreach (Excel.Worksheet sheet in book1.Worksheets)
             {
                 Excel.Worksheet compareSheet = book2.Sheets[sheet.Index];
                 Excel.Range compareRange = compareSheet.UsedRange;
                 //writebookRow = CS_Files.CompareSheets.Compare(sheet, compareRange, writeRange, writebookRow, pBar);
+
+
                 int writebookColumns = 1;
                 bool written;
                 Excel.Range range = sheet.UsedRange;
@@ -79,7 +87,9 @@ namespace ExcelReaderWPF
                 {
                     written = false;
                     float percentage = ((float)i / rows) * 100;
-                    pBar.Value = percentage;
+                    //move all this back to the compare sheet CS file. Insert a method into this page that updates the progress bar and call that method at this point in the code
+                    int percentInt = Convert.ToInt32(percentage);
+                    pBar.Value = percentInt;
 
                     if (range.Cells[i, 4].Value == compareRange.Cells[i, 4].Value && range.Cells[i, 4].Value != null)
                     {
@@ -113,6 +123,7 @@ namespace ExcelReaderWPF
             bookOut.Save();
             bookOut.Close();
             app.Quit();
+            ProgressBox.Text = "Sheet comparison finished.";
         }
     }
 }

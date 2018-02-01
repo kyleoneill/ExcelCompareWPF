@@ -9,7 +9,8 @@
       Title="ProgressBar">
 
     <Grid Margin="20,20,158,261">
-        <ProgressBar x:Name="pBar" Minimum="0" Maximum="100" Value="20" Margin="63,148,-83,-156"/>
-        <TextBox x:Name="ProgressBox" Height="20" Margin="42,102,-108,-103" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" HorizontalAlignment="Left" Width="188"/>
+        <ProgressBar x:Name="pBar" Minimum="0" Maximum="100" Value="0" Margin="63,209,-83,-217"/>
+        <TextBox x:Name="ProgressBox" Height="20" Margin="39,160,-105,-161" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" HorizontalAlignment="Left" Width="188"/>
+        <Button Content="Start" HorizontalAlignment="Left" Height="28" Margin="71,101,-74,-110" VerticalAlignment="Top" Width="125" Click="Button_Click"/>
     </Grid>
 </Page>
