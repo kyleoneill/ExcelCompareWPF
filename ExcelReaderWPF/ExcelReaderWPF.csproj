@@ -67,7 +67,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CS Files\CompareSheets.cs" />
+    <Compile Include="CS Files\SheetComparer.cs" />
     <Compile Include="CS Files\OpenExcel.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

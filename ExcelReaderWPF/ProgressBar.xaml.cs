@@ -13,18 +13,43 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Excel = Microsoft.Office.Interop.Excel;
+using ExcelReaderWPF.CS_Files;
 
 namespace ExcelReaderWPF
 {
 	/// <summary>
 	/// Interaction logic for ProgressBar.xaml
 	/// </summary>
+	
+	// Two progress bars - one for current row/all rows in a sheet, one for current sheet(index)/all sheets in a book
+
 	public partial class ProgressBar : Page
 	{
 		string File1Path;
 		string File2Path;
 		string FileOutPath;
 		int FileOutIndex;
+
+		Task _compareTask;
+
+		public double Progress
+		{
+			get { return ProgressBarObj.Value; }
+			set { Dispatcher.Invoke(() => ProgressBarObj.Value = value); } //Dispatcher sets the value of the progress bar on the same thread that owns the progress bar
+		}
+
+		public double ProgressSheets
+		{
+			get { return ProgressBarSheets.Value; }
+			set { Dispatcher.Invoke(() => ProgressBarSheets.Value = value); }
+		}
+
+		public string SheetName
+		{
+			get { return ProgressTextBox.Text; }
+			set { Dispatcher.Invoke(() => ProgressTextBox.Text = value); }
+		}
+
 		public ProgressBar()
 		{
 			InitializeComponent();
@@ -35,7 +60,14 @@ namespace ExcelReaderWPF
 			File2Path = fp2;
 			FileOutPath = fpo;
 			FileOutIndex = Convert.ToInt32(foi);
-			//this.Loaded += new RoutedEventHandler(OnLoad);
+
+			_compareTask = Task.Run(() =>
+			{
+				using (var comparer = new SheetComparer(File1Path, File2Path, FileOutPath)) //After the comparer obj is done being used, the dispose function is called
+				{
+					comparer.CompareSheet(this);
+				}
+			});
 		}
 	}
 }

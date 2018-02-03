@@ -5,12 +5,12 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 	  xmlns:local="clr-namespace:ExcelReaderWPF"
 	  mc:Ignorable="d" 
-	  d:DesignHeight="350" d:DesignWidth="525"
+	  d:DesignHeight="360" d:DesignWidth="600"
 	  Title="ProgressBar">
 
-	<Grid Margin="20,20,158,261">
-		<ProgressBar x:Name="ProgressBarObj" Minimum="0" Maximum="100" Value="0" Margin="71,227,-45,-181"/>
-		<TextBox x:Name="ProgressBox" Height="20" Margin="71,187,0,-138" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" HorizontalAlignment="Left" Width="188"/>
-		<Button Content="Start" HorizontalAlignment="Left" Height="28" Margin="71,133,0,-92" VerticalAlignment="Top" Width="125" Click="Button_Click"/>
-	</Grid>
+    <Grid Margin="0,0,0,0">
+        <ProgressBar x:Name="ProgressBarObj" Minimum="0" Maximum="100" Value="0" Margin="60,206,0,0" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="469"/>
+        <TextBox x:Name="ProgressTextBox" Height="20" Margin="197,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" HorizontalAlignment="Left" Width="188"/>
+        <ProgressBar x:Name="ProgressBarSheets" Minimum="0" Maximum="100" Value="0" Margin="60,126,0,0" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="469"/>
+    </Grid>
 </Page>

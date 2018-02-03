@@ -5,5 +5,5 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:ExcelReaderWPF"
 		mc:Ignorable="d"
-		Title="Excel Reader" Height="350" Width="525" Source="MainPage.xaml">
+		Title="Excel Reader" Height="360" Width="600" Source="MainPage.xaml">
 </NavigationWindow>

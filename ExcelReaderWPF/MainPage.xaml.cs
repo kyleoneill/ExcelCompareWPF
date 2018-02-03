@@ -25,7 +25,7 @@ namespace ExcelReaderWPF
 		{
 			InitializeComponent();
 		}
-		private void File1Select_Click(object sender, RoutedEventArgs e)
+		private static void FileSelect(TextBox textbox)
 		{
 			var fileDialog = new System.Windows.Forms.OpenFileDialog();
 			var result = fileDialog.ShowDialog();
@@ -33,52 +33,28 @@ namespace ExcelReaderWPF
 			{
 				case System.Windows.Forms.DialogResult.OK:
 					var file = fileDialog.FileName;
-					File1Box.Text = file;
-					File1Box.ToolTip = file;
+					textbox.Text = file;
+					textbox.ToolTip = file;
 					break;
 				case System.Windows.Forms.DialogResult.Cancel:
 				default:
-					File1Box.Text = null;
-					File1Box.ToolTip = null;
+					textbox.Text = null;
+					textbox.ToolTip = null;
 					break;
 			}
 		}
+		private void File1Select_Click(object sender, RoutedEventArgs e)
+		{
+			FileSelect(File1Box);
+		}
 		private void File2Select_Click(object sender, RoutedEventArgs e)
 		{
-			var fileDialog = new System.Windows.Forms.OpenFileDialog();
-			var result = fileDialog.ShowDialog();
-			switch (result)
-			{
-				case System.Windows.Forms.DialogResult.OK:
-					var file = fileDialog.FileName;
-					File2Box.Text = file;
-					File2Box.ToolTip = file;
-					break;
-				case System.Windows.Forms.DialogResult.Cancel:
-				default:
-					File2Box.Text = null;
-					File2Box.ToolTip = null;
-					break;
-			}
+			FileSelect(File2Box);
 		}
 
 		private void File3Select_Click(object sender, RoutedEventArgs e)
 		{
-			var fileDialog = new System.Windows.Forms.OpenFileDialog();
-			var result = fileDialog.ShowDialog();
-			switch (result)
-			{
-				case System.Windows.Forms.DialogResult.OK:
-					var file = fileDialog.FileName;
-					FileOutBox.Text = file;
-					FileOutBox.ToolTip = file;
-					break;
-				case System.Windows.Forms.DialogResult.Cancel:
-				default:
-					FileOutBox.Text = null;
-					FileOutBox.ToolTip = null;
-					break;
-			}
+			FileSelect(FileOutBox);
 		}
 		private static bool IsTextAllowed(string text)
 		{
