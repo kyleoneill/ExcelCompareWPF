@@ -16,14 +16,14 @@ using System.Windows.Shapes;
 
 namespace ExcelReaderWPF
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : NavigationWindow
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : NavigationWindow
+	{
+		public MainWindow()
+		{
+			InitializeComponent();
+		}
+	}
 }

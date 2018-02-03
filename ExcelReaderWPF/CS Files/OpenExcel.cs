@@ -7,7 +7,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ExcelReaderWPF.CS_Files
 {
-    class OpenExcel
-    {
-    }
+	class OpenExcel
+	{
+	}
 }
