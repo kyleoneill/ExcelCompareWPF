@@ -53,10 +53,14 @@ namespace ExcelReaderWPF
 
         }*/
         
-
+        public static void UpdateProgressBar()
+        {
+            ProgressBarObj.Dispatcher.Invoke();
+            //The heck ^?
+        }
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int writebookRow = 2;
 
             Excel.Application app = new Excel.Application();
             Excel.Workbook book1 = app.Workbooks.Open(File1Path);
@@ -73,57 +77,8 @@ namespace ExcelReaderWPF
 
             foreach (Excel.Worksheet sheet in book1.Worksheets)
             {
-                Excel.Worksheet compareSheet = book2.Sheets[sheet.Index];
-                Excel.Range compareRange = compareSheet.UsedRange;
-                //writebookRow = CS_Files.CompareSheets.Compare(sheet, compareRange, writeRange, writebookRow, pBar);
-
-
-                int writebookColumns = 1;
-                bool written;
-                Excel.Range range = sheet.UsedRange;
-                int rows = range.Rows.Count;
-                int columns = range.Columns.Count;
-                for (int i = 1; i <= rows; i++)
-                {
-                    written = false;
-                    float percentage = ((float)i / rows) * 100;
-                    //move all this back to the compare sheet CS file. Insert a method into this page that updates the progress bar and call that method at this point in the code
-                    int percentInt = Convert.ToInt32(percentage);
-                    pBar.Value = percentInt;
-
-                    if (range.Cells[i, 4].Value == compareRange.Cells[i, 4].Value && range.Cells[i, 4].Value != null)
-                    {
-                        for (int j = 5; j <= 11; j++)
-                        {
-                            if (range.Cells[i, j].Value == compareRange.Cells[i, j].Value && range.Cells[i, j].Value != null)
-                            {
-                                if (dictionary.Contains(Convert.ToString(range.Cells[i, j].Value)) || int.TryParse(Convert.ToString(range.Cells[i, j].Value), out int n))
-                                {
-                                    break;
-                                }
-                                writeRange.Cells[writebookRow, 1].Value = sheet.Name;
-                                writeRange.Cells[writebookRow, 2].Value = range.Cells[1, j].Value;
-                                writeRange.Cells[writebookRow, 3].Value = range.Cells[i, 4].Value;
-                                writeRange.Cells[writebookRow, writebookColumns + 3].Value = range.Cells[i, j].Value;
-                                writebookColumns++;
-                                written = true;
-                            }
-                        }
-                        if (written)
-                            writebookRow++;
-                        writebookColumns = 1;
-                    }
-                }
+                //Insert a method in this file that updates the progress bar when called. Call this method in the CompareSheets class, compare method.
+                //make sure to pass an INT. Convert float to int before passing.
             }
-
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            book1.Close();
-            book2.Close();
-            bookOut.Save();
-            bookOut.Close();
-            app.Quit();
-            ProgressBox.Text = "Sheet comparison finished.";
-        }
-    }
+        }    }
 }

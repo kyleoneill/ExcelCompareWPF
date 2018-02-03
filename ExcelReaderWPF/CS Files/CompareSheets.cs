@@ -7,9 +7,9 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ExcelReaderWPF.CS_Files
 {
-    static class CompareSheets
+    class CompareSheets
     {
-        public static int Compare(Excel.Worksheet sheet, Excel.Range compareRange, Excel.Range writeRange, int writebookRow, ProgressBar progressBar)
+        public static int Compare(Excel.Worksheet sheet, Excel.Workbook workbook2, Excel.Range writeRange, int writebookRow)
         {
             List<String> dictionary = new List<string>()
             {
@@ -20,10 +20,13 @@ namespace ExcelReaderWPF.CS_Files
                 "DATA JACK",
                 "PHONE JACK",
                 "RED PHONE",
-                "CABLE " + "\n" + "BOX "
+                "CABLE " + "\n" + "BOX ", //Replace these two with a regex attempt to find all cable box?
+                "CABLE" + "\n" + "BOX ",
             };
             int writebookColumns = 1;
             bool written;
+            Excel.Worksheet compareSheet = workbook2.Sheets[sheet.Index];
+            Excel.Range compareRange = compareSheet.UsedRange;
             Excel.Range range = sheet.UsedRange;
             int rows = range.Rows.Count;
             int columns = range.Columns.Count;
@@ -32,7 +35,6 @@ namespace ExcelReaderWPF.CS_Files
                 written = false;
                 float percentage = ((float)i / rows) * 100;
                 //Console.Write(sheet.Name + ": " + percentage.ToString("0.0") + "%");
-                
                 if (range.Cells[i, 4].Value == compareRange.Cells[i, 4].Value && range.Cells[i, 4].Value != null)
                 {
                     for (int j = 5; j <= 11; j++)
