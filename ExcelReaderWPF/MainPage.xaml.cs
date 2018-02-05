@@ -28,7 +28,7 @@ namespace ExcelReaderWPF
 		private static void FileSelect(TextBox textbox)
 		{
 			var fileDialog = new System.Windows.Forms.OpenFileDialog();
-			fileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All Files(*.*)|*.*";
+			fileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
 			var result = fileDialog.ShowDialog();
 			switch (result)
 			{
