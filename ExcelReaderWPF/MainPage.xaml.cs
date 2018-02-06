@@ -68,7 +68,7 @@ namespace ExcelReaderWPF
 		}
 		public void SubmitDataButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (File1Box.Text != "" && File2Box.Text != "" && FileOutBox.Text != "" && FileIndexBox.Text != "")
+			if (File1Box.Text != "" && File2Box.Text != "" && FileOutBox.Text != "" && FileIndexBox.Text != "" && File1Box.Text != File2Box.Text)
 			{
 				if(Convert.ToInt32(FileIndexBox.Text) > 10)
 				{

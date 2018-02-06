@@ -6,9 +6,13 @@
 	  xmlns:local="clr-namespace:ExcelReaderWPF"
 	  mc:Ignorable="d" 
 	  d:DesignHeight="360" d:DesignWidth="600"
-	  Title="ProgressBar">
+	  Title="ProgressBar"
+      ShowsNavigationUI="False">
 
     <Grid Margin="0,0,0,0">
+        <Grid.Background>
+            <ImageBrush ImageSource="background.png" Stretch="Uniform"/>
+        </Grid.Background>
         <ProgressBar x:Name="ProgressBarObj" Minimum="0" Maximum="100" Value="0" Margin="60,206,0,0" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="469"/>
         <TextBox x:Name="ProgressTextBox" Height="20" Margin="197,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" HorizontalAlignment="Left" Width="188"/>
         <ProgressBar x:Name="ProgressBarSheets" Minimum="0" Maximum="100" Value="0" Margin="60,126,0,0" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="469"/>
