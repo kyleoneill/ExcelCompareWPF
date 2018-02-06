@@ -92,6 +92,22 @@ namespace ExcelReaderWPF.CS_Files
 			}
 		}
 
+		//Compares the names of sheets in both of the input books to make sure that the correct sheets are paired up, even if the sheets are out of order in the books
+		public Excel.Worksheet GetSheet(Excel.Worksheet sheet)
+		{
+			foreach(Excel.Worksheet sheet2 in _book2.Sheets)
+			{
+				if(sheet.Name == sheet2.Name)
+				{
+					return sheet2;
+				}
+			}
+			MessageBoxResult valueTooHigh = MessageBox.Show("Sheet '" + sheet.Name + "' does not exist in book " + _book2.Name, "Error", MessageBoxButton.OK);
+			Dispose();
+			Environment.Exit(0);
+			return null;
+		}
+
 		//comparison for each sheet in a book
 		public int Compare(Excel.Worksheet sheet, int writeBookRow, ProgressBar progressBar)
 		{
@@ -99,7 +115,7 @@ namespace ExcelReaderWPF.CS_Files
 			{
 				int writebookColumns = 1;
 				bool written;
-				Excel.Worksheet compareSheet = _book2.Sheets[sheet.Index];
+				Excel.Worksheet compareSheet = GetSheet(sheet);
 				Excel.Range compareRange = compareSheet.UsedRange;
 				Excel.Range range = sheet.UsedRange;
 				int rows = range.Rows.Count;
