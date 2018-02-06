@@ -70,8 +70,15 @@ namespace ExcelReaderWPF
 		{
 			if (File1Box.Text != "" && File2Box.Text != "" && FileOutBox.Text != "" && FileIndexBox.Text != "")
 			{
-				ProgressBar p = new ProgressBar(File1Box.Text, File2Box.Text, FileOutBox.Text, FileIndexBox.Text);
-				this.NavigationService.Navigate(p);
+				if(Convert.ToInt32(FileIndexBox.Text) > 10)
+				{
+					MessageBoxResult valueTooHigh = MessageBox.Show("Please select an index equal to or less than 10.", "Error", MessageBoxButton.OK);
+				}
+				else
+				{
+					ProgressBar p = new ProgressBar(File1Box.Text, File2Box.Text, FileOutBox.Text, FileIndexBox.Text);
+					this.NavigationService.Navigate(p);
+				}
 			}
 		}
 	}

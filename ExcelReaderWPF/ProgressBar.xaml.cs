@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Excel = Microsoft.Office.Interop.Excel;
 using ExcelReaderWPF.CS_Files;
 
 namespace ExcelReaderWPF
@@ -63,7 +62,7 @@ namespace ExcelReaderWPF
 
 			_compareTask = Task.Run(() =>
 			{
-				using (var comparer = new SheetComparer(File1Path, File2Path, FileOutPath)) //After the comparer obj is done being used, the dispose function is called
+				using (var comparer = new SheetComparer(File1Path, File2Path, FileOutPath, FileOutIndex)) //After the comparer obj is done being used, the dispose function is called
 				{
 					comparer.CompareSheet(this);
 				}

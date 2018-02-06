@@ -29,19 +29,44 @@ namespace ExcelReaderWPF.CS_Files
 		readonly private Excel.Worksheet _writeSheet;
 		readonly private Excel.Range _writeRange;
 
-		public SheetComparer(string file1Path, string file2Path, string fileOutPath)
+		/*public Excel.Worksheet CreateSheet(Excel.Workbook book)
+		{
+			return ((Excel.Worksheet)book.Worksheets.Add());
+		}*/
+
+		public int CountSheets(Excel.Workbook book)
+		{
+			int i = 0;
+			foreach(Excel.Worksheet sheet in book.Worksheets)
+			{
+				i++;
+			}
+			return i;
+		}
+
+		public void AddIndex(Excel.Workbook book, int index)
+		{
+			if(index > CountSheets(book))
+			{
+				book.Worksheets.Add();
+				AddIndex(book, index);
+			}
+		}
+
+		public SheetComparer(string file1Path, string file2Path, string fileOutPath, int index)
 		{
 			_app = new Excel.Application();
 			_book1 = _app.Workbooks.Open(file1Path);
 			_book2 = _app.Workbooks.Open(file2Path);
 			_bookOut = _app.Workbooks.Open(fileOutPath);
-			_writeSheet = _bookOut.Sheets[1];
+			AddIndex(_bookOut, index);
+			_writeSheet = _bookOut.Sheets[index];
 			_writeRange = _writeSheet.UsedRange;
 		}
 		public void Dispose()
 		{
-			_book1.Close();
-			_book2.Close();
+			_book1.Close(false);
+			_book2.Close(false);
 			_bookOut.Save();
 			_bookOut.Close();
 			_app.Quit();
