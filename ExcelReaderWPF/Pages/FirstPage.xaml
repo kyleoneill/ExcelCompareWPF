@@ -1,0 +1,18 @@
+﻿<Page x:Class="ExcelReaderWPF.Pages.FirstPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ExcelReaderWPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="360" d:DesignWidth="600"
+      Title="FirstPage">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="background.png" Stretch="Uniform"/>
+        </Grid.Background>
+        <Button x:Name="CompareAllButton" Content="Compare All Quads" HorizontalAlignment="Left" Margin="140,165,0,0" VerticalAlignment="Top" Width="124" Height="32" Click="CompareAllButton_Click"/>
+        <Button x:Name="CompareTwoButton" Content="Compare Two Files" HorizontalAlignment="Left" Margin="342,165,0,0" VerticalAlignment="Top" Width="124" Height="32" Click="CompareTwoButton_Click"/>
+    </Grid>
+</Page>

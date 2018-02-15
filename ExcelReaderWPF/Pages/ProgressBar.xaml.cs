@@ -65,6 +65,7 @@ namespace ExcelReaderWPF
 				using (var comparer = new SheetComparer(File1Path, File2Path, FileOutPath, FileOutIndex)) //After the comparer obj is done being used, the dispose function is called
 				{
 					comparer.CompareSheet(this);
+					comparer.Dispose();
 				}
 			});
 		}

@@ -66,7 +66,6 @@ namespace ExcelReaderWPF.CS_Files
 		//Output data includes any data from matching jacks that is the same between the two input data books.
 		public void CompareSheet(ProgressBar progressBar)
 		{
-			int writeBookRow = 1;
 			//TryCatch ends program if the user attemps to enter the same input multiple times.
 			try
 			{
@@ -81,6 +80,8 @@ namespace ExcelReaderWPF.CS_Files
 			_writeRange.Cells[1, 1].Value = "Hall";
 			_writeRange.Cells[1, 2].Value = "Jack Type";
 			_writeRange.Cells[1, 3].Value = "Jack";
+			_writeRange.Cells[1, 4].Value = "Issue";
+			int writeBookRow = 2;
 
 			int i = 0;
 			foreach(Excel.Worksheet sheet in _book1.Worksheets)
