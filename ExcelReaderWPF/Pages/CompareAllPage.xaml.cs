@@ -94,6 +94,9 @@ namespace ExcelReaderWPF.Pages
 					{
 						string file1 = Folder1Textbox.Text + "\\" + file + ".xlsx";
 						string file2 = Folder2Textbox.Text + "\\" + (secondAssess[Array.IndexOf(secondAssess, file + " Second")]) + ".xlsx";
+
+						//Might want to just create the progressbar and do the foreach within it, rather than doing a foreach generating progressbar objects
+						//Pass the info into the progressbar, make a second constructor to take different information
 						ProgressBar p = new ProgressBar(file1, file2, FileOutTextbox.Text, index);
 						this.NavigationService.Navigate(p);
 					}
