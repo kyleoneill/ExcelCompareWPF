@@ -80,6 +80,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CS Files\SheetComparer.cs" />
+    <Compile Include="CS Files\Verification.cs" />
     <Compile Include="Pages\CompareAllPage.xaml.cs">
       <DependentUpon>CompareAllPage.xaml</DependentUpon>
     </Compile>

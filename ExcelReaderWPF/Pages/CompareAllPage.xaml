@@ -12,5 +12,15 @@
         <Grid.Background>
             <ImageBrush ImageSource="background.png" Stretch="Uniform"/>
         </Grid.Background>
+        <TextBox x:Name="Folder1Textbox" HorizontalAlignment="Left" Height="20" Margin="318,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" IsReadOnly="True"/>
+        <Button x:Name="Folder1Select" Content="Browse" HorizontalAlignment="Left" Margin="220,100,0,0" VerticalAlignment="Top" Width="75" Click="File1Select_Click"/>
+        <Label Content="First Assessment Folder" HorizontalAlignment="Left" Margin="64,97,0,0" VerticalAlignment="Top" Height="28" Width="133"/>
+        <TextBox x:Name="Folder2Textbox" HorizontalAlignment="Left" Height="20" Margin="318,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" IsReadOnly="True"/>
+        <Button x:Name="Folder2Select" Content="Browse" HorizontalAlignment="Left" Margin="220,147,0,0" VerticalAlignment="Top" Width="75" Click="Folder2Select_Click"/>
+        <Label Content="Second Assessment Folder" HorizontalAlignment="Left" Margin="64,144,0,0" VerticalAlignment="Top" Height="28" Width="133"/>
+        <Button Content="Enter" HorizontalAlignment="Left" Margin="251,258,0,0" VerticalAlignment="Top" Width="92" Height="22" Click="Button_Click"/>
+        <TextBox x:Name="FileOutTextbox" HorizontalAlignment="Left" Height="20" Margin="320,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" IsReadOnly="True"/>
+        <Button x:Name="FileOutSelect" Content="Browse" HorizontalAlignment="Left" Margin="219,193,0,0" VerticalAlignment="Top" Width="75" Click="File3Select_Click"/>
+        <Label Content="Output File" HorizontalAlignment="Left" Margin="102,190,0,0" VerticalAlignment="Top" Height="28" Width="76"/>
     </Grid>
 </Page>

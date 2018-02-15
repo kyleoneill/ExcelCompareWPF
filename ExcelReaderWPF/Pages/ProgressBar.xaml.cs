@@ -53,12 +53,12 @@ namespace ExcelReaderWPF
 		{
 			InitializeComponent();
 		}
-		public ProgressBar(string fp1, string fp2, string fpo, string foi):this()
+		public ProgressBar(string fp1, string fp2, string fpo, int foi):this()
 		{
 			File1Path = fp1;
 			File2Path = fp2;
 			FileOutPath = fpo;
-			FileOutIndex = Convert.ToInt32(foi);
+			FileOutIndex = foi;
 
 			_compareTask = Task.Run(() =>
 			{

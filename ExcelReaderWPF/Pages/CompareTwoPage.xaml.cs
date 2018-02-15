@@ -76,7 +76,7 @@ namespace ExcelReaderWPF
 				}
 				else
 				{
-					ProgressBar p = new ProgressBar(File1Box.Text, File2Box.Text, FileOutBox.Text, FileIndexBox.Text);
+					ProgressBar p = new ProgressBar(File1Box.Text, File2Box.Text, FileOutBox.Text, Convert.ToInt32(FileIndexBox.Text));
 					this.NavigationService.Navigate(p);
 				}
 			}
