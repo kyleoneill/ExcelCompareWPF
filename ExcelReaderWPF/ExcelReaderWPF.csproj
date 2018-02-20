@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>TextTemplate.ico</ApplicationIcon>
+    <ApplicationIcon>ualbany_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -162,10 +162,7 @@
     <Resource Include="Pages\background.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="untitled_1_aG7_icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="TextTemplate.ico" />
+    <Resource Include="ualbany_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

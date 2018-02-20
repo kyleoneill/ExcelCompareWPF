@@ -81,25 +81,8 @@ namespace ExcelReaderWPF.Pages
 			{
 				if(CS_Files.Verification.VerifyFolders(Folder1Textbox.Text, Folder2Textbox.Text))
 				{
-					string[] firstAssess = Directory.GetFiles(Folder1Textbox.Text, "*.xlsx")
-						.Select(System.IO.Path.GetFileNameWithoutExtension)
-						.Select(p => p.Substring(0))
-						.ToArray();
-					string[] secondAssess = Directory.GetFiles(Folder2Textbox.Text, "*.xlsx")
-						.Select(System.IO.Path.GetFileNameWithoutExtension)
-						.Select(p => p.Substring(0))
-						.ToArray();
-					int index = 1;
-					foreach (string file in firstAssess)//Currently tries to do every single foreach at the same time, it should do one after another
-					{
-						string file1 = Folder1Textbox.Text + "\\" + file + ".xlsx";
-						string file2 = Folder2Textbox.Text + "\\" + (secondAssess[Array.IndexOf(secondAssess, file + " Second")]) + ".xlsx";
-
-						//Might want to just create the progressbar and do the foreach within it, rather than doing a foreach generating progressbar objects
-						//Pass the info into the progressbar, make a second constructor to take different information
-						ProgressBar p = new ProgressBar(file1, file2, FileOutTextbox.Text, index);
-						this.NavigationService.Navigate(p);
-					}
+					ProgressBar p = new ProgressBar(Folder1Textbox.Text, Folder2Textbox.Text, FileOutTextbox.Text);
+					this.NavigationService.Navigate(p);
 				}
 				else
 				{
