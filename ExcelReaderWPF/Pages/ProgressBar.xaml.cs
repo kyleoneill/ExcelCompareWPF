@@ -68,7 +68,6 @@ namespace ExcelReaderWPF
 				using (var comparer = new SheetComparer(_File1Path, _File2Path, _FileOutPath, _FileOutIndex)) //After the comparer obj is done being used, the dispose function is called
 				{
 					comparer.CompareSheet(this);
-					comparer.Dispose();
 				}
 			});
 		}
@@ -93,9 +92,9 @@ namespace ExcelReaderWPF
 					using (var comparer = new SheetComparer(_File1Path, _File2Path, _FileOutPath, _FileOutIndex))
 					{
 						comparer.CompareSheet(this);
-						//comparer.Dispose(); Redundant, using should call dispose on its own
 					}
 				});
+				//_compareTask.Wait();
 				_FileOutIndex++;
 			}
 		}

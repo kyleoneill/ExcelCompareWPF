@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Diagnostics;
 
 namespace ExcelReaderWPF.CS_Files
 {
@@ -91,6 +92,7 @@ namespace ExcelReaderWPF.CS_Files
 				i++;
 				progressBar.ProgressSheets = 100 * (double)i / (_book1.Worksheets.Count - 1);
 			}
+			_bookOut.Save();
 		}
 
 		//Compares the names of sheets in both of the input books to make sure that the correct sheets are paired up, even if the sheets are out of order in the books
