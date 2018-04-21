@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
+using System.ComponentModel;
 
 namespace ExcelReaderWPF
 {
@@ -25,5 +27,21 @@ namespace ExcelReaderWPF
 		{
 			InitializeComponent();
 		}
+
+        void DataWindow_Closing(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                foreach (Process proc in Process.GetProcessesByName("EXCEL"))
+                {
+                    proc.Kill();
+                }
+            }
+            //catch (Exception ex)
+            catch
+            {
+                MessageBoxResult excelKill = System.Windows.MessageBox.Show("Failure to close all Excel processes.", "Error", MessageBoxButton.OK);
+            }
+        }
 	}
 }

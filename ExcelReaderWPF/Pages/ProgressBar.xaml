@@ -7,7 +7,8 @@
 	  mc:Ignorable="d" 
 	  d:DesignHeight="360" d:DesignWidth="600"
 	  Title="ProgressBar"
-      ShowsNavigationUI="False">
+      ShowsNavigationUI="False"
+ >
 
     <Grid Margin="0,0,0,0">
         <Grid.Background>

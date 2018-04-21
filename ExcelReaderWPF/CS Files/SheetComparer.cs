@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Diagnostics;
 
 namespace ExcelReaderWPF.CS_Files
 {
@@ -60,6 +61,18 @@ namespace ExcelReaderWPF.CS_Files
 			_bookOut.Save();
 			_bookOut.Close();
 			_app.Quit();
+            try
+            {
+                foreach(Process proc in Process.GetProcessesByName("EXCEL"))
+                {
+                    proc.Kill();
+                }
+            }
+            //catch(Exception ex)
+            catch
+            {
+                MessageBoxResult excelKill = MessageBox.Show("Failure to close all Excel processes.","Error", MessageBoxButton.OK);
+            }
 		}
 
 		//main function of the class. Compares all sheets in two workbooks and outputs data onto the output sheet chosen by the user.
