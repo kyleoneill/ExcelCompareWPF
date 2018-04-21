@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using ExcelReaderWPF.CS_Files;
+using ExcelReaderWPF.Pages;
 
 namespace ExcelReaderWPF
 {
@@ -17,13 +18,6 @@ namespace ExcelReaderWPF
 
 	public partial class ProgressBar : Page
 	{
-		string _File1Path;
-		string _File2Path;
-		string _FileOutPath;
-		int _FileOutIndex;
-
-		Task _compareTask;
-
 		public double Progress
 		{
 			get { return ProgressBarObj.Value; }
@@ -47,47 +41,48 @@ namespace ExcelReaderWPF
 			InitializeComponent();
 		}
 
-		public void Compare()
+		public void Compare(string file1Path, string file2Path, string fileOutPath, int fileOutIndex)
 		{
-			//_compareTask = Task.Run(() =>
-			_compareTask = Task.Run(() =>
+			using (var comparer = new SheetComparer(file1Path, file2Path, fileOutPath, fileOutIndex)) //After the comparer obj is done being used, the dispose function is called
 			{
-				using (var comparer = new SheetComparer(_File1Path, _File2Path, _FileOutPath, _FileOutIndex)) //After the comparer obj is done being used, the dispose function is called
-				{
-					comparer.CompareSheet(this);
-				}
-			});
+				comparer.CompareSheet(this);
+			}
 		}
 
 		public ProgressBar(string fp1, string fp2, string fpo, int foi):this()
 		{
-			_File1Path = fp1;
-			_File2Path = fp2;
-			_FileOutPath = fpo;
-			_FileOutIndex = foi;
-			Compare();
+            Task.Run(() =>
+            {
+                Compare(fp1, fp2, fpo, foi);
+                // Navigate back to the first page
+                Dispatcher.Invoke(() => NavigationService.Navigate(new FirstPage()));
+            });
 		}
 		public ProgressBar(string folderPath1, string folderPath2, string filePathOut):this()
 		{
-			string[] firstAssess = Directory.GetFiles(folderPath1, "*.xlsx")
-						.Select(Path.GetFileNameWithoutExtension)
-						.Select(p => p.Substring(0))
-						.ToArray();
-			string[] secondAssess = Directory.GetFiles(folderPath2, "*.xlsx")
-				.Select(Path.GetFileNameWithoutExtension)
-				.Select(p => p.Substring(0))
-				.ToArray();
-			_FileOutPath = filePathOut;
-			_FileOutIndex = 1;
-			foreach (string file in firstAssess)
-			{
-				_File1Path = folderPath1 + "\\" + file + ".xlsx";
-				_File2Path = folderPath2 + "\\" + (secondAssess[Array.IndexOf(secondAssess, file + " Second")]) + ".xlsx";
+            Task.Run(() =>
+            {
+                var firstAssess = Directory.GetFiles(folderPath1, "*.xlsx")
+                    .Select(Path.GetFileNameWithoutExtension)
+                    .ToArray();
+                var secondAssess = Directory.GetFiles(folderPath2, "*.xlsx")
+                    .Select(Path.GetFileNameWithoutExtension)
+                    .ToArray();
 
-				Compare();
+                var fileIndex = 1;
+                foreach (var file in firstAssess)
+                {
+                    var file1Path = folderPath1 + "\\" + file + ".xlsx";
+                    var file2Path = folderPath2 + "\\" + (secondAssess[Array.IndexOf(secondAssess, file + " Second")]) + ".xlsx";
 
-				_FileOutIndex++;
-			}
+                    Compare(file1Path, file2Path, filePathOut, fileIndex);
+
+                    ++fileIndex;
+                }
+
+                // Navigate back to the first page
+                Dispatcher.Invoke(() => NavigationService.Navigate(new FirstPage()));
+            });
 		}
 	}
 }
