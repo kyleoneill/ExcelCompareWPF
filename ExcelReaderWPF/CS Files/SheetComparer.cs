@@ -128,6 +128,8 @@ namespace ExcelReaderWPF.CS_Files
 		{
 			try
 			{
+                const int k_MaxJacks = 1000;
+
 				int writebookColumns = 1;
 				bool written;
 				Excel.Worksheet compareSheet = GetSheet(sheet);
@@ -135,13 +137,17 @@ namespace ExcelReaderWPF.CS_Files
 				Excel.Range range = sheet.UsedRange;
 				int rows = range.Rows.Count;
 				int columns = range.Columns.Count;
-				for (int i = 1; i <= rows; i++)
+				for (int i = 1; i <= Math.Min(rows, k_MaxJacks); i++) //Caps the amount of rows being used at 1000, in case sheets are formatted badly
 				{
 					written = false; //bool value is used to increment the current column on the output sheet when data is written
 					float percentage = ((float)i / rows) * 100;
 					progressBar.Progress = percentage;
-					//If jack number on input book 1 == jack number on input book 2 and the value is not null
-					if (Convert.ToString(range.Cells[i, 4].Value) == Convert.ToString(compareRange.Cells[i, 4].Value) && range.Cells[i, 4].Value != null)
+                    if (range.Cells[i, 4].Value == null) //Skips processing for empty rows
+                    {
+                        continue;
+                    }
+                    //If jack number on input book 1 == jack number on input book 2 and the value is not null
+                    if (Convert.ToString(range.Cells[i, 4].Value) == Convert.ToString(compareRange.Cells[i, 4].Value) && range.Cells[i, 4].Value != null)
 					{
 						//For each column of jack information
 						for (int j = 5; j <= 11; j++)
