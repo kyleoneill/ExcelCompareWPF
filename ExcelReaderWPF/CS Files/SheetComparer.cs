@@ -99,10 +99,10 @@ namespace ExcelReaderWPF.CS_Files
 			int i = 0;
 			foreach(Excel.Worksheet sheet in _book1.Worksheets)
 			{
-				progressBar.SheetName = sheet.Name;
+                progressBar.ProgressSheets = 100 * (double)i / (_book1.Worksheets.Count - 1);
+                progressBar.SheetName = sheet.Name;
 				writeBookRow = Compare(sheet, writeBookRow, progressBar);
 				i++;
-				progressBar.ProgressSheets = 100 * (double)i / (_book1.Worksheets.Count - 1);
 			}
 			_bookOut.Save();
 		}
