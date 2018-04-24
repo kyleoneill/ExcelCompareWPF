@@ -68,8 +68,10 @@ namespace ExcelReaderWPF
 		}
 		public void SubmitDataButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (File1Box.Text != "" && File2Box.Text != "" && FileOutBox.Text != "" && FileIndexBox.Text != "" && File1Box.Text != File2Box.Text)
+			if (File1Box.Text != "" && File2Box.Text != "" && FileOutBox.Text != "" && File1Box.Text != File2Box.Text)
 			{
+                if (FileIndexBox.Text == "")
+                    FileIndexBox.Text = "1";
 				if(Convert.ToInt32(FileIndexBox.Text) > 10)
 				{
 					MessageBoxResult valueTooHigh = MessageBox.Show("Please select an index equal to or less than 10.", "Error", MessageBoxButton.OK);
